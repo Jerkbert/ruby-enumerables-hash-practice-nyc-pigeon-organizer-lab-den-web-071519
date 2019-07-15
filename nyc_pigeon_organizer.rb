@@ -21,24 +21,25 @@ pigeon_data = {
 
 def nyc_pigeon_organizer(data)
   new_hash = {}
-  data.each do |k, v|
-    
-    v.each do |category, names|
+  data.each do |category, v| 
+    binding.pry
+    v.each do |subcategory, names|
    
       names.each do |name|
         
-        if !new_hash[name]
+        if !new_hash[name] #if the name is not yet a key, iterate through, if it is a key move on. 
           
-          new_hash[name] = {}
+          new_hash[name] = {} #creates an empty hash with new key being name
         end
         
-        if !new_hash[name][k]
+        if !new_hash[name][category]
           
-          new_hash[name][k]=[]
-        
+          new_hash[name][category]=[] #adds category with an empty array to the empty hash
+         
         end
         
-        new_hash[name][k] << category.to_s 
+        new_hash[name][category] << subcategory.to_s #throws the subcategory in to the empty array (was a symbol so must convert to string)
+   
       end
     end
   end
